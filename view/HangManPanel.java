@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import controller.HangManListener;
 import model.HangMan;
 
 public class HangManPanel {
@@ -56,6 +57,11 @@ public class HangManPanel {
 		initAlphabet();
 		addAlphabetToPanel(southPanel);
 		cp.add(BorderLayout.SOUTH, southPanel);
+
+		HangManListener hangManListener = new HangManListener(this);
+		for (var b : alphabet) {
+			b.addActionListener(hangManListener);
+		}
 	}
 
 	void initAlphabet() {
@@ -84,6 +90,11 @@ public class HangManPanel {
 		}
 	}
 
+	public void disableButtons() {
+		for (int i = 0; i < 26; i++)
+			alphabet[i].setEnabled(false);
+	}
+
 	public JButton[] getAlphabetButtons() {
 		return alphabet;
 	}
@@ -92,12 +103,12 @@ public class HangManPanel {
 		return hangMan;
 	}
 
-	public void setGuessField(String guess) {
-
+	public void setGuessFieldText(String guess) {
+		guessField.setText(guess);
 	}
 
-	public void setGameKeyField(String gameKey) {
-
+	public void setGameKeyFieldText(String gameKey) {
+		gameKeyField.setText(gameKey);
 	}
 
 

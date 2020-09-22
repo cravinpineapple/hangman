@@ -3,6 +3,8 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+
 import model.HangMan.GameState;
 import view.HangManPanel;
 
@@ -16,15 +18,26 @@ public class HangManListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		var button = e.getSource();
+		JButton button = (JButton) (e.getSource());
 
+		if (panel.getHangMan().getGameState() == GameState.GAMEOVER) {
+			panel.disableButtons();
+		}
 		if (button == panel.getAlphabetButtons()[26]) {
 			panel.enableButtons();
 			panel.getHangMan().newGame();
-			panel.getHangMan().setGameState(GameState.PLAYING);
-			panel.setGuessField("..........");
-			panel.setGameKeyField(panel.getHangMan().getCurrentGameKey());
-			
+			panel.setGuessFieldText(panel.getHangMan().getCurrentGuess());
+			panel.setGameKeyFieldText(panel.getHangMan().getCurrentGameKey());
+		}
+		else {
+			panel.getHangMan().guessLetter(button.getText().charAt(0));
+			panel.setGuessFieldText(panel.getHangMan().getCurrentGuess());
+			//int disableIndex = (int) (button.getText().charAt(0) - 'A');
+			button.setEnabled(false);
+			panel.getHangMan().checkWin();
+
+			if (panel.getHangMan().getWin() || panel.getHangMan().getHealth() < 1)
+				panel.disableButtons();
 		}
 	}
 	

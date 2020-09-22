@@ -20,9 +20,6 @@ public class HangManListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		JButton button = (JButton) (e.getSource());
 
-		if (panel.getHangMan().getGameState() == GameState.GAMEOVER) {
-			panel.disableButtons();
-		}
 		if (button == panel.getAlphabetButtons()[26]) {
 			panel.enableButtons();
 			panel.getHangMan().newGame();
@@ -36,9 +33,13 @@ public class HangManListener implements ActionListener {
 			button.setEnabled(false);
 			panel.getHangMan().checkWin();
 
-			if (panel.getHangMan().getWin() || panel.getHangMan().getHealth() < 1)
+			if (panel.getHangMan().getWin() || panel.getHangMan().getHealth() < 1) {
 				panel.disableButtons();
+				panel.getHangMan().setGameState(GameState.GAMEOVER);
+			}
 		}
+
+		panel.getCanvas().repaint();
 	}
 	
 }

@@ -1,6 +1,6 @@
-import java.util.Scanner;
+//import java.util.Scanner;
 
-import model.HangMan;
+//import model.HangMan;
 
 public class HangManTest {
 	public static void main(String[] args) {

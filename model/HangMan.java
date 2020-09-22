@@ -25,9 +25,10 @@ public class HangMan {
 		health = 5;
 		currentGameKey = generateKey();
 		initCurrentGuess();
+		gameState = GameState.PLAYING;
 	}
 
-	public void guessLetter(String currentGuess, char letter) {
+	public void guessLetter(char letter) {
 		boolean found = false;
 		String newCurrentGuess = "";
 
@@ -43,7 +44,7 @@ public class HangMan {
 			}
 		}
 
-		this.currentGuess = newCurrentGuess;
+		currentGuess = newCurrentGuess;
 
 		if (!found)
 			health--;
@@ -72,7 +73,6 @@ public class HangMan {
 		for (int i = 0; i < currentGameKey.length(); i++) {
 			if (currentGameKey.charAt(i) != currentGuess.charAt(i)) {
 				flag = false;
-				System.out.println("test");
 				break;
 			}
 		}
@@ -101,6 +101,10 @@ public class HangMan {
 
 	public void setGameState(GameState gameState) {
 		this.gameState = gameState;
+	}
+
+	public GameState getGameState() {
+		return gameState;
 	}
 
 	void initGameKeys() {

@@ -29,7 +29,7 @@ public class HangManCanvas extends JPanel {
 		g2.setColor(Color.blue);
 		if (state == GameState.READY) {
 			g2.setFont(new Font("Courier New", Font.BOLD, 30));
-			g2.drawString("Press New Game to play!", 10, 50);
+			g2.drawString("Press <New> to play!", 5, 50);
 		}
 		else if (state == GameState.PLAYING) {
 			g2.setFont(new Font("Courier New", Font.BOLD, 50));
@@ -48,9 +48,9 @@ public class HangManCanvas extends JPanel {
 
 			g2.setColor(Color.red);
 			g2.setFont(new Font("Courier New", Font.BOLD, 30));
-			g2.drawString(resultText, 10, 40);
+			g2.drawString(resultText, 5, 40);
 			g2.setColor(Color.blue);
-			g2.drawString("Press New Game to play again!", 10, 60);
+			g2.drawString("Press <New> to play again!", 5, 80);
 		}
 		
 	}

@@ -56,7 +56,6 @@ public class HangManPanel {
 		initAlphabet();
 		addAlphabetToPanel(southPanel);
 		cp.add(BorderLayout.SOUTH, southPanel);
-		
 	}
 
 	void initAlphabet() {
@@ -98,7 +97,7 @@ public class HangManPanel {
 	}
 
 	public void setGameKeyField(String gameKey) {
-		
+
 	}
 
 

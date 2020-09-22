@@ -26,6 +26,7 @@ public class HangMan {
 		currentGameKey = generateKey();
 		initCurrentGuess();
 		gameState = GameState.PLAYING;
+		win = false;
 	}
 
 	public void guessLetter(char letter) {

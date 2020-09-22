@@ -74,7 +74,7 @@ public class HangManPanel {
 	void initAlphabet() {
 		for (int i = 0; i < 27; i++) {
 			if (i == 26) {
-				alphabet[i] = new JButton("New Game!");
+				alphabet[i] = new JButton("New");
 				break;
 			}
 

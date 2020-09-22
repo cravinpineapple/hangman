@@ -11,8 +11,10 @@ public class HangMan {
 	
 	ArrayList<String> gameKeys = new ArrayList<String>();
 	String currentGameKey = "";
+	String currentGuess = "";
 	GameState gameState = GameState.READY;
 	int health = 5;
+	boolean win = false;
 
 
 	public HangMan() {
@@ -21,20 +23,80 @@ public class HangMan {
 
 	public void newGame() {
 		health = 5;
-		generateKey();
+		currentGameKey = generateKey();
+		initCurrentGuess();
 	}
 
-	String generateKey() {
+	public void guessLetter(String currentGuess, char letter) {
+		boolean found = false;
+		String newCurrentGuess = "";
+
+		//updates currentGuess with letter if letter is present in currentGamKey
+		//	also marks when letter found so health can be/not be deducted
+		for (int i = 0; i < currentGameKey.length(); i++) {
+			if (currentGameKey.charAt(i) == letter) {
+				found = true;
+				newCurrentGuess += letter;
+			}
+			else {
+				newCurrentGuess += currentGuess.charAt(i);
+			}
+		}
+
+		this.currentGuess = newCurrentGuess;
+
+		if (!found)
+			health--;
+	}
+
+	private void initCurrentGuess() {
+		currentGuess = "";
+
+		for (int i = 0; i < currentGameKey.length(); i++) {
+			currentGuess += ".";
+		}
+	}
+
+	private String generateKey() {
 		Random rand = new Random();
-		return gameKeys.get(rand.nextInt(gameKeys.size()));
+
+		for (int i = 0; i < currentGameKey.length(); i++)
+			currentGuess += ".";
+
+			return gameKeys.get(rand.nextInt(gameKeys.size()));
+	}
+
+	public void checkWin() {
+		boolean flag = true;
+
+		for (int i = 0; i < currentGameKey.length(); i++) {
+			if (currentGameKey.charAt(i) != currentGuess.charAt(i)) {
+				flag = false;
+				System.out.println("test");
+				break;
+			}
+		}
+
+		if (flag) {
+			win = true;
+			gameState = GameState.GAMEOVER;
+		}
 	}
 
 	public String getCurrentGameKey() {
 		return currentGameKey;
 	}
 
+	public String getCurrentGuess() {
+		return currentGuess;
+	}
+
 	public int getHealth() {
 		return health;
+	}
+
+	public boolean getWin() {
+		return win;
 	}
 
 	public void setGameState(GameState gameState) {

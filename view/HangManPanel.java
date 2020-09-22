@@ -2,7 +2,9 @@ package view;
 
 import java.awt.GridLayout;
 import java.awt.Container;
+import java.awt.Font;
 import java.awt.BorderLayout;
+import java.awt.Color;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -36,7 +38,12 @@ public class HangManPanel {
 		Container cp = window.getContentPane();
 
 		gameKeyField.setEditable(false);
+		gameKeyField.setFont(new Font("Courier New", Font.BOLD, 20));
+		gameKeyField.setForeground(Color.red);
 		guessField.setEditable(false);
+		guessField.setFont(new Font("Courier New", Font.BOLD, 20));
+		
+		
 
 		// north panel 2x1 layout for gamekey & guess
 		JPanel northPanel = new JPanel();
@@ -101,6 +108,10 @@ public class HangManPanel {
 
 	public HangMan getHangMan() {
 		return hangMan;
+	}
+
+	public HangManCanvas getCanvas() {
+		return canvas;
 	}
 
 	public void setGuessFieldText(String guess) {
